@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
@@ -11,19 +12,34 @@ const SAMPLE_AIRPORTS = [
   { id: 3, name: "Tokyo Narita", code: "NRT", lat: 35.7720, lng: 140.3929 },
 ];
 
+const mapContainerStyle = {
+  width: '100%',
+  height: '400px',
+  borderRadius: '0.5rem',
+};
+
+const center = {
+  lat: 20,
+  lng: 0,
+};
+
 const AirportMap = () => {
   const [selectedAirport, setSelectedAirport] = useState<typeof SAMPLE_AIRPORTS[0] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const handleAirportClick = (airport: typeof SAMPLE_AIRPORTS[0]) => {
+  const handleMarkerClick = useCallback((airport: typeof SAMPLE_AIRPORTS[0]) => {
     setSelectedAirport(airport);
     toast({
       title: airport.name,
       description: `IATA Code: ${airport.code}`,
     });
-  };
+  }, [toast]);
+
+  const handleMapClick = useCallback(() => {
+    setSelectedAirport(null);
+  }, []);
 
   if (error) {
     return (
@@ -51,26 +67,52 @@ const AirportMap = () => {
             <Loader2 className="h-8 w-8 animate-spin" />
           </div>
         ) : (
-          <div className="relative w-full h-[400px] bg-gray-100 rounded-lg">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-gray-500">Map integration coming soon...</p>
-            </div>
-            {/* Display airport list temporarily */}
-            <div className="absolute bottom-4 left-4 right-4 bg-white/90 p-4 rounded-lg">
-              <div className="grid grid-cols-1 gap-2">
-                {SAMPLE_AIRPORTS.map((airport) => (
-                  <button
-                    key={airport.id}
-                    onClick={() => handleAirportClick(airport)}
-                    className="text-left p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                  >
-                    <span className="font-medium">{airport.name}</span>
-                    <span className="ml-2 text-sm text-gray-500">({airport.code})</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+          <LoadScript googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY || ''}>
+            <GoogleMap
+              mapContainerStyle={mapContainerStyle}
+              zoom={2}
+              center={center}
+              onClick={handleMapClick}
+              options={{
+                styles: [
+                  {
+                    featureType: 'all',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#7c93a3' }],
+                  },
+                  {
+                    featureType: 'administrative',
+                    elementType: 'geometry',
+                    stylers: [{ visibility: 'on' }],
+                  },
+                  {
+                    featureType: 'water',
+                    elementType: 'geometry.fill',
+                    stylers: [{ color: '#d3d3d3' }],
+                  },
+                ],
+              }}
+            >
+              {SAMPLE_AIRPORTS.map((airport) => (
+                <Marker
+                  key={airport.id}
+                  position={{ lat: airport.lat, lng: airport.lng }}
+                  onClick={() => handleMarkerClick(airport)}
+                />
+              ))}
+              {selectedAirport && (
+                <InfoWindow
+                  position={{ lat: selectedAirport.lat, lng: selectedAirport.lng }}
+                  onCloseClick={() => setSelectedAirport(null)}
+                >
+                  <div className="p-2">
+                    <h3 className="font-medium">{selectedAirport.name}</h3>
+                    <p className="text-sm text-gray-500">IATA: {selectedAirport.code}</p>
+                  </div>
+                </InfoWindow>
+              )}
+            </GoogleMap>
+          </LoadScript>
         )}
       </CardContent>
     </Card>
