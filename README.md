@@ -36,6 +36,20 @@ npm i
 npm run dev
 ```
 
+## Environment Variables & API Keys
+
+This project utilizes various third-party APIs that require API keys to function correctly. You'll need to create a `.env` file in the root of the project and populate it with your keys.
+
+1.  **Copy the example file:**
+    `cp .env.example .env`
+
+2.  **Edit `.env` and add your API keys:**
+    *   `VITE_OPEN_WEATHER_API_KEY`: Get from [OpenWeatherMap](https://openweathermap.org/api) (Used for the Weather Widget).
+    *   `VITE_GOOGLE_MAPS_API_KEY`: Get from [Google Cloud Console](https://console.cloud.google.com/google/maps-apis/overview) (Used for the Airport Map).
+    *   `VITE_MAPBOX_ACCESS_TOKEN`: Get from [Mapbox](https://www.mapbox.com/account/access-tokens) (Used for the main interactive map).
+
+**Note:** This application uses Vite. Environment variables need to be prefixed with `VITE_` to be accessible in the client-side code.
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
