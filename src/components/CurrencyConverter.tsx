@@ -101,7 +101,7 @@ const CurrencyConverter = () => {
           borderRadius: '0.75rem',
           padding: '1.5rem',
           marginBottom: '1rem'
-        }}>
+        }} className="dark:bg-gray-800/50">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div>
               <label style={{ 
@@ -122,7 +122,7 @@ const CurrencyConverter = () => {
                     borderRadius: '0.5rem',
                     padding: '0.5rem 1rem',
                     boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
-                  }} className="dark:bg-gray-800 dark:border-gray-700">
+                  }} className="dark:bg-gray-700 dark:border-gray-600">
                     <input
                       type="number"
                       value={amount}
@@ -132,9 +132,10 @@ const CurrencyConverter = () => {
                         border: 'none',
                         outline: 'none',
                         width: '100%',
-                        backgroundColor: 'transparent'
+                        backgroundColor: 'transparent',
+                        color: 'inherit'
                       }}
-                      className="dark:bg-gray-800 dark:text-white"
+                      className="dark:text-white"
                     />
                   </div>
                 </div>
@@ -148,9 +149,10 @@ const CurrencyConverter = () => {
                     backgroundColor: 'white',
                     outline: 'none',
                     width: '5rem',
-                    boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+                    boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+                    color: 'inherit'
                   }}
-                  className="dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                  className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 >
                   {CURRENCIES.map(currency => (
                     <option key={currency.code} value={currency.code}>
@@ -183,7 +185,7 @@ const CurrencyConverter = () => {
                   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                   transition: 'transform 0.2s ease'
                 }}
-                className="dark:bg-gray-800 dark:border-gray-700"
+                className="dark:bg-gray-700 dark:border-gray-600"
                 onMouseOver={(e) => {
                   e.currentTarget.style.transform = 'rotate(180deg)';
                 }}
@@ -191,7 +193,7 @@ const CurrencyConverter = () => {
                   e.currentTarget.style.transform = 'rotate(0deg)';
                 }}
               >
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 dark:text-white" />
               </button>
             </div>
             
@@ -214,7 +216,7 @@ const CurrencyConverter = () => {
                     borderRadius: '0.5rem',
                     padding: '0.5rem 1rem',
                     boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
-                  }} className="dark:bg-gray-700 dark:border-gray-600">
+                  }} className="dark:bg-gray-800 dark:border-gray-700">
                     <input
                       type="text"
                       value={`${getSymbol(toCurrency)} ${convertedAmount}`}
@@ -224,9 +226,10 @@ const CurrencyConverter = () => {
                         outline: 'none',
                         width: '100%',
                         backgroundColor: 'transparent',
-                        fontWeight: '600'
+                        fontWeight: '600',
+                        color: 'inherit'
                       }}
-                      className="dark:bg-gray-700 dark:text-white"
+                      className="dark:text-white"
                     />
                   </div>
                 </div>
@@ -240,9 +243,10 @@ const CurrencyConverter = () => {
                     backgroundColor: 'white',
                     outline: 'none',
                     width: '5rem',
-                    boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+                    boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+                    color: 'inherit'
                   }}
-                  className="dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                  className="dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 >
                   {CURRENCIES.map(currency => (
                     <option key={currency.code} value={currency.code}>
