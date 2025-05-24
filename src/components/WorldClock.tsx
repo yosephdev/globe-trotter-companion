@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Clock, Plus, Globe } from 'lucide-react';
 
 // Common timezones with city names
@@ -32,7 +32,8 @@ const WorldClock = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedTimezone, setSelectedTimezone] = useState('');
 
-  const updateTimes = () => {
+
+  const updateTimes = useCallback(() => {
     setLoading(true);
     
     const updatedClocks = clocks.map((clock) => {
@@ -72,13 +73,13 @@ const WorldClock = () => {
     
     setClocks(updatedClocks);
     setLoading(false);
-  };
+  }, [clocks]);
 
   useEffect(() => {
     updateTimes();
     const interval = setInterval(updateTimes, 1000); // Update every second
     return () => clearInterval(interval);
-  }, [clocks.length]);
+  }, [updateTimes]);
 
   const addClock = () => {
     if (!selectedTimezone || clocks.some(c => c.timezone === selectedTimezone)) {
