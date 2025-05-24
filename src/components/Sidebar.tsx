@@ -128,7 +128,7 @@ const Sidebar = ({ onSectionChange }: SidebarProps) => {
         </button>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .sidebar-button {
           position: relative;
           overflow: hidden;

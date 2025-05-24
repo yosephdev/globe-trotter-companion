@@ -1,8 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Cloud, Search, Sun, Thermometer, Wind, Droplets } from 'lucide-react';
 
+interface WeatherData {
+  name: string;
+  main: {
+    temp: number;
+    feels_like: number;
+    humidity: number;
+  };
+  weather: Array<{
+    main: string;
+    description: string;
+  }>;
+  wind: {
+    speed: number;
+  };
+}
+
 const WeatherWidget = () => {
-  const [weather, setWeather] = useState<any>(null);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
   const [city, setCity] = useState('London');
   const [searchCity, setSearchCity] = useState('');
@@ -161,7 +177,7 @@ const WeatherWidget = () => {
           </div>
         )}
 
-        <style jsx>{`
+        <style>{`
           @keyframes spin {
             to { transform: rotate(360deg); }
           }
