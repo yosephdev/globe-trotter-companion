@@ -1,69 +1,115 @@
-# Welcome to your Lovable project
+# GlobeTrotter Companion
 
-## Project info
+A modern travel companion web application built with React, TypeScript, and Vite.
 
-**URL**: https://lovable.dev/projects/4cc93c08-3da8-4c86-b2f9-6206e9e6a522
+![GlobeTrotter Companion Screenshot](./public/og-image.png)
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Interactive World Map**: Explore the globe with a 3D interactive map
+- **Weather Widget**: Check weather conditions for any city
+- **World Clock**: Track time across multiple timezones
+- **Currency Converter**: Convert between major world currencies
+- **Airport Map**: Find information about major international airports
 
-**Use Lovable**
+## Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4cc93c08-3da8-4c86-b2f9-6206e9e6a522) and start prompting.
+- **Frontend**: React, TypeScript
+- **Styling**: Custom CSS with CSS variables for theming
+- **State Management**: React Hooks and Context
+- **Routing**: React Router
+- **Build Tool**: Vite
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js 16+ or Bun 1.0+
+- API keys for the services mentioned below
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
+1. Clone the repository
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+git clone https://github.com/yosephdev/globe-trotter-companion.git
+cd globe-trotter-companion
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm install
+# or
+bun install
+```
 
-**Use GitHub Codespaces**
+3. Create a `.env` file in the root directory with your API keys (see `.env.example`)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+VITE_OPEN_WEATHER_API_KEY=your_openweathermap_api_key
+VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+VITE_MAPBOX_ACCESS_TOKEN=your_mapbox_access_token
+```
 
-## What technologies are used for this project?
+4. Start the development server
 
-This project is built with .
+```bash
+npm run dev
+# or
+bun dev
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+5. Open your browser and navigate to `http://localhost:3000`
 
-## How can I deploy this project?
+## Building for Production
 
-Simply open [Lovable](https://lovable.dev/projects/4cc93c08-3da8-4c86-b2f9-6206e9e6a522) and click on Share -> Publish.
+```bash
+npm run build
+# or
+bun run build
+```
 
-## I want to use a custom domain - is that possible?
+The built files will be in the `dist` directory.
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## Deployment
+
+The app can be deployed to any static hosting service:
+
+1. Build the project
+
+```bash
+npm run build
+```
+
+2. Deploy the `dist` directory to your hosting service
+
+### Environment Variables
+
+Make sure to set the following environment variables on your hosting platform:
+
+- `VITE_OPEN_WEATHER_API_KEY`: API key for OpenWeatherMap
+- `VITE_GOOGLE_MAPS_API_KEY`: API key for Google Maps
+- `VITE_MAPBOX_ACCESS_TOKEN`: Access token for Mapbox
+
+## Features to Add
+
+- User authentication and profiles
+- Trip planning and itinerary management
+- Flight tracking
+- Local attraction recommendations
+- Language translation
+- Offline mode support
+
+## License
+
+MIT
+
+## Acknowledgements
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Lucide Icons](https://lucide.dev/)
+- [OpenWeatherMap API](https://openweathermap.org/api)
+- [Exchange Rate API](https://exchangerate.host/)
+- [World Time API](http://worldtimeapi.org/)

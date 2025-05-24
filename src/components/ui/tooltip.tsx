@@ -21,6 +21,12 @@ const TooltipContent = React.forwardRef<
       className
     )}
     {...props}
+    style={{
+      backgroundColor: 'var(--popover)',
+      color: 'var(--popover-foreground)',
+      border: '1px solid var(--border)',
+      ...props.style
+    }}
   />
 ))
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
